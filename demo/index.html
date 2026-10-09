@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Word DOC 属性编辑器</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="../vendor/cfb.min.js"></script>
+  <script defer src="../dist/ole-doc-metadata.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <main class="page-shell">
+    <header class="masthead">
+      <div class="brand-mark" aria-hidden="true"><span>OLE</span><i></i><span>DOC</span></div>
+      <div>
+        <p class="eyebrow">WORD 97—2003 · 文件属性</p>
+        <h1>编辑文档属性</h1>
+      </div>
+      <p class="privacy-note">文件仅在此浏览器中处理</p>
+    </header>
+
+    <section class="file-card" aria-labelledby="file-heading">
+      <div class="file-card-heading">
+        <div>
+          <p class="section-kicker">旧版 Word 文档</p>
+          <h2 id="file-heading">选择一个 .doc 文件</h2>
+        </div>
+        <label class="choose-button" for="doc-file">选择文件</label>
+        <input id="doc-file" type="file" accept=".doc,application/msword">
+      </div>
+      <p class="file-name" id="file-name">支持未加密的 Word 97–2003 文档。原文件不会被覆盖。</p>
+      <p class="signature-warning" id="signature-warning" hidden>此文件带有数字签名。修改属性会使原签名失效。</p>
+    </section>
+
+    <section class="editor-card" aria-labelledby="editor-heading">
+      <div class="editor-heading">
+        <div>
+          <p class="section-kicker">属性</p>
+          <h2 id="editor-heading">文档信息</h2>
+        </div>
+        <span class="property-stamp">HPSF / OLE</span>
+      </div>
+
+      <form id="metadata-form" autocomplete="off">
+        <div class="field-grid">
+          <label>标题<input name="title" type="text"></label>
+          <label>主题<input name="subject" type="text"></label>
+          <label>作者<input name="author" type="text"></label>
+          <label>关键词<input name="keywords" type="text"></label>
+          <label>类别<input name="category" type="text"></label>
+          <label>公司<input name="company" type="text"></label>
+          <label>主管<input name="manager" type="text"></label>
+          <label>内容状态<input name="status" type="text"></label>
+          <label>版权<input name="copyright" type="text"></label>
+          <label>修订号<input name="revision" type="text" inputmode="numeric"></label>
+          <label>文档版本<input name="version" type="text"></label>
+          <label>最后保存者<input name="lastModBy" type="text"></label>
+          <label>创建时间<input name="created" type="datetime-local"></label>
+          <label>最后保存时间（应用时更新）<input name="modified" type="datetime-local" readonly></label>
+          <label>最后打印时间<input name="lastPrinted" type="datetime-local"></label>
+          <label>总编辑时间（分钟）<input name="totalTime" type="number" min="0" step="1"></label>
+          <label>程序名称<input name="producer" type="text"></label>
+          <label>程序版本<input name="appVersion" type="text" placeholder="16.0000"></label>
+          <label class="wide-field">说明<textarea name="description" rows="3"></textarea></label>
+        </div>
+      </form>
+
+      <div class="apply-bar">
+        <label class="mode-control" for="operation-mode">
+          <span>操作</span>
+          <select id="operation-mode">
+            <option value="form">修改当前属性</option>
+            <option value="template">应用当前字段为模板</option>
+            <option value="clear">清空 Office 属性</option>
+          </select>
+        </label>
+        <button class="apply-button" id="apply-download" type="button" disabled>应用并下载 .doc</button>
+      </div>
+      <p class="status-message" id="status-message" role="status" aria-live="polite">选择文件后可查看和编辑属性。</p>
+    </section>
+
+    <footer>只修改 Office 文件属性；正文、批注和修订记录保持不变。</footer>
+  </main>
+</body>
+</html>
